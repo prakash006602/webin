@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+    stages {
+        stage('Clone Repo') {
+            steps {
+                git 'https://github.com/<your-username>/hotstar-website.git'
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t hotstar-website .'
+            }
+        }
+        stage('Run Container') {
+            steps {
+                sh '''
+                docker rm -f hotstar || true
+                docker run -d --name hotstar -p 8081:80 hotstar-website
+                '''
+            }
+        }
+    }
+}
+
