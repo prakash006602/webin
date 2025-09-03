@@ -1,9 +1,9 @@
 pipeline {
     agent any
     stages {
-        stage('Clone Repo') {
+        stage('Clone https://github.com/prakash006602/webin.git ') {
             steps {
-                git 'https://github.com/<your-username>/hotstar-website.git'
+                git 'https://github.com//hotstar-website.git'
             }
         }
         stage('Build Docker Image') {
